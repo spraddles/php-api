@@ -10,5 +10,7 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 
-# Mac
+# Other
 *.DS_STORE
+*.db
+/vendor
