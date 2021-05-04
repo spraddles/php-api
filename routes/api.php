@@ -31,3 +31,16 @@ Route::delete(
     ['only' => ['destroy']]
 );
 
+// Get all user events:
+Route::get(
+    'events',
+    'App\Http\Controllers\UserEventsController@index',
+    ['only' => ['index']]
+);
+
+// Get users event count grouped by event type
+Route::get(
+    'events/grouped',
+    'App\Http\Controllers\UserEventsController@grouped',
+    ['only' => ['grouped']]
+);
