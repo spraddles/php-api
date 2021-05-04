@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\UserTable;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 class UserController extends Controller
 {
@@ -78,8 +79,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {  
+  
+        $model=UserTable::where('userId',$id)->delete();
+        return response()->json(['message' => 'success!']);
+
     }
+
 }
