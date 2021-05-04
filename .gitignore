@@ -15,3 +15,4 @@ Homestead.json
 *.db
 /vendor
 *.db-journal
+*.phpunit.result.cache
