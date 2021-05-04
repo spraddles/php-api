@@ -4,10 +4,10 @@ FROM ubuntu:18.04
 # Headless install (otherwise it hangs)
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install PHP 7.4
-RUN apt update && apt -y install software-properties-common
+# System updates
+RUN apt-get update && apt -y install software-properties-common
 RUN add-apt-repository ppa:ondrej/php
-RUN apt update && apt -y install php7.4 php7.4-curl php7.4-mbstring php7.4-xml php7.4-zip unzip
+RUN apt-get update && apt -y install php7.4 php7.4-curl php7.4-mbstring php7.4-xml php7.4-zip unzip postgresql postgresql-contrib
 
 # Install Git (for prod not dev)
 #RUN apt-get update && apt-get install -y git
@@ -23,12 +23,12 @@ RUN mv composer.phar /usr/bin/composer
 # Copying current local DIR to container image DIR (for dev not prod)
 RUN mkdir /php-api-build
 COPY . /php-api-build
-RUN cd /php-api-build && composer update
-RUN mkdir /php-api-run
-RUN cd /php-api-run
 
 # Install Composer dependencies
-#RUN composer update
+RUN cd /php-api-build && composer update
 
-# Serve Larvel app (post-build command, only takes line, not multiple!)
-CMD ["php", "artisan", "serve", "--host=0.0.0.0"]
+# Move into container DIR
+RUN mkdir /php-api-run && cd /php-api-run
+
+# Post build commands
+CMD ["sh", "./php-api-run/batch_file.sh"]
