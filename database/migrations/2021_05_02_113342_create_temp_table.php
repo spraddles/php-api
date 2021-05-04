@@ -14,11 +14,11 @@ class CreateTempTable extends Migration
     public function up()
     {
         Schema::create('temp_table', function (Blueprint $table) {
-            $table->integer('eventId')->primary();
+            $table->increments('eventId');
             $table->string('userFirstname');
             $table->string('userSurname');
             $table->string('userEmail');
-            $table->timestamp('eventDate');
+            $table->string('eventDate');
             $table->string('eventType');
             $table->string('eventMessage');
         });

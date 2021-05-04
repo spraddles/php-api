@@ -13,14 +13,14 @@ class SetTables extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('user_table', function (Blueprint $table) {
             // set primary key 
             $table->primary('userId');
         });
-        Schema::table('user_events', function (Blueprint $table) {
+        Schema::table('user_events_table', function (Blueprint $table) {
             // set primary & foreign keys
             $table->primary('eventId');
-            $table->foreign('userId')->references('userId')->on('user')->onDelete('cascade');
+            $table->foreign('userId')->references('userId')->on('user_table')->onDelete('cascade');
         });
     }
 
@@ -31,7 +31,7 @@ class SetTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
-        Schema::dropIfExists('user_events');
+        Schema::dropIfExists('user_table');
+        Schema::dropIfExists('user_events_table');
     }
 }
