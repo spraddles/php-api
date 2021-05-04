@@ -14,3 +14,4 @@ Homestead.json
 *.DS_STORE
 *.db
 /vendor
+*.db-journal

@@ -39,6 +39,7 @@ return [
             'driver' => env('DB_CONNECTION'),
             'url' => env('DATABASE_URL'),
             'database' => database_path(env('DB_DATABASE'),),
+            //'database' => env('DB_DATABASE_PATH'),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
